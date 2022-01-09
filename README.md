@@ -1,1 +1,1 @@
-# ghost-cache-purge-worker
+# ghost-cache-purge
