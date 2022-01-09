@@ -14,10 +14,6 @@ async function handleRequest(request) {
     console.log(postURL)
   }
 
-
-  // const reqBody = await readRequestBody(request)
-  // const retBody = `The request body sent in was ${reqBody}`
-
   return new Response("OK", {
     status: 200,
     headers: {
