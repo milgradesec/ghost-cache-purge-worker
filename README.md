@@ -43,7 +43,7 @@ Go to Ghost admin Settings-->Integrations and create a new custom integration na
 Now add webhooks for events:
 
 | NAME        | EVENT                  | URL                                                       | LAST TRIGGERED |
-| ----------- | ---------------------- | ----------------------------------------------------------| -------------- |
+| ----------- | ---------------------- | --------------------------------------------------------- | -------------- |
 | Ping Worker | Post published         | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/postPublished> | Not triggered  |
 | Ping Worker | Published post updated | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/postUpdated>   | Not triggered  |
 
