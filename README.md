@@ -51,6 +51,8 @@ Now add webhooks for events:
 | Ping Worker | Post published         | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/postPublished> | Not triggered  |
 | Ping Worker | Published post updated | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/postUpdated>   | Not triggered  |
 
+<!-- ### ⚙️ Configure Ghost caching -->
+
 ## 📜 License
 
 MIT License
