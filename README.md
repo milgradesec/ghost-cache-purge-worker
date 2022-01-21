@@ -4,10 +4,14 @@
 
 A Cloudflare Worker to purge cached pages when a post is published or updated on Ghost.
 
+## ❓ Why
+
+With this worker you can run your Ghost blog with a `Cache Everything` Page Rule on Cloudflare and serve all content (including HTML pages) from Cloudflare's cache.
+When a post is published or updated a webhook will trigger this worker to purge that page from the cache.
+
 ## 📙 Usage
 
 ### 🚀 Deploy Worker
-<!-- [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/milgradesec/ghost-cache-purge) -->
 
 Go to your Cloudflare account and create an API token with the `Zone.Cache Purge` permission.
 
