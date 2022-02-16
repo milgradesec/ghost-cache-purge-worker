@@ -34,6 +34,11 @@ async function handleRequest(request) {
       return new Response(resp.statusText, { status: resp.status })
     }
 
+    const resp = await purgeURL(GHOST_URL)
+    if (!resp.ok) {
+      return new Response(resp.statusText, { status: resp.status })
+    }
+
     console.log("Purged: " + postURL)
     return new Response("OK", { status: 200 })
   }
