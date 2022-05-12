@@ -1,12 +1,9 @@
 name = "ghost-cache-purge"
-type = "javascript"
+
+main = "index.js"
 
 workers_dev = true
 compatibility_date = "2022-01-09"
 
 [vars]
 GHOST_URL = "https://blog.paesa.es/"
-
-# [secrets]
-# CF_ZONE_ID
-# CF_API_TOKEN
