@@ -1,10 +1,10 @@
 export default {
   async fetch(request, env, context) {
-    return handleRequest(request, env, context)
+    return handleRequest(request, env)
   },
 };
 
-async function handleRequest(request, env, context) {
+async function handleRequest(request, env) {
   const { headers } = request
   const contentType = headers.get("content-type") || ""
   const url = new URL(request.url);
@@ -14,7 +14,7 @@ async function handleRequest(request, env, context) {
   }
 
   if (url.pathname.startsWith("/postPublished")) {
-    const resp = await purgeURL(env.GHOST_URL)
+    const resp = await purgeURL(env.GHOST_URL, env)
     if (!resp.ok) {
       return new Response(resp.statusText, { status: resp.status })
     }
