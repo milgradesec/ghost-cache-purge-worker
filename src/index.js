@@ -13,30 +13,34 @@ async function handleRequest(request, env) {
     return new Response(`Method ${request.method} not allowed.`, { status: 405 })
   }
 
-  if (url.pathname.startsWith("/postPublished")) {
+  if (!url.pathname.startsWith("/" + env.SECRET_TOKEN)) {
+    return new Response(`Invalid Webhook Token.`, { status: 401 })
+  }
+
+  if (url.pathname.endsWith("/postPublished")) {
     const resp = await purgeURL(env.GHOST_URL, env)
     if (!resp.ok) {
       return new Response(resp.statusText, { status: resp.status })
     }
 
-    console.log("Purged: " + env.GHOST_URL)
+    console.log(`🧹 Purged: ${env.GHOST_URL}`)
     return new Response("OK", { status: 200 })
   }
 
-  if (url.pathname.startsWith("/postUpdated")) {
+  if (url.pathname.endsWith("/postUpdated")) {
     if (!contentType.includes("application/json")) {
       return new Response("Bad Request", { status: 400 })
     }
 
-    const json = await parseJsonBody(request)
-    const postURL = env.GHOST_URL + json.post.current.slug + "/"
+    const body = await parseWebhookBody(request)
+    const postURL = env.GHOST_URL + body.post.current.slug + "/"
 
     const resp = await purgeURL(postURL, env)
     if (!resp.ok) {
       return new Response(resp.statusText, { status: resp.status })
     }
 
-    console.log("Purged: " + postURL)
+    console.log(`🧹 Purged: ${postURL}`)
     return new Response("OK", { status: 200 })
   }
 
@@ -63,9 +67,8 @@ async function purgeURL(url, env) {
 }
 
 
-async function parseJsonBody(request) {
+async function parseWebhookBody(request) {
   const body = JSON.stringify(await request.json())
-  console.log(body)
 
   return JSON.parse(body)
 }

@@ -27,6 +27,12 @@ Set the `CF_API_TOKEN` secret:
 wrangler secret put CF_API_TOKEN
 ```
 
+Set a `SECRET_TOKEN` for the webhook URL:
+
+```shell
+wrangler secret put SECRET_TOKEN
+```
+
 Set the `GHOST_URL` environment variable at `wrangler.toml`:
 
 ```toml
@@ -46,10 +52,10 @@ Go to Ghost admin Settings-->Integrations and create a new custom integration na
 
 Now add webhooks for events:
 
-| NAME        | EVENT                  | URL                                                       | LAST TRIGGERED |
-| ----------- | ---------------------- | --------------------------------------------------------- | -------------- |
-| Ping Worker | Post published         | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/postPublished> | Not triggered  |
-| Ping Worker | Published post updated | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/postUpdated>   | Not triggered  |
+| NAME        | EVENT                  | URL                                                                    | LAST TRIGGERED |
+| ----------- | ---------------------- | ---------------------------------------------------------------------- | -------------- |
+| Ping Worker | Post published         | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/SECRET_TOKEN/postPublished> | Not triggered  |
+| Ping Worker | Published post updated | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/SECRET_TOKEN/postUpdated>   | Not triggered  |
 
 <!-- ### ⚙️ Configure Ghost caching -->
 
